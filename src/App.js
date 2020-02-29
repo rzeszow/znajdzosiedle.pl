@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { observer } from 'mobx-react-lite';
+
+import './lib/Leaflet';
+
+import { useStores } from './stores';
+
+import SubdivisionsMap from './components/SubdivisionsMap';
+import Search from './components/Search';
+import Spinner from './components/Spinner';
+import Infobox from './components/Infobox';
+import Logo from './components/Logo';
+
+import './App.scss';
 
 function App() {
+  const { subdivisions } = useStores();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search/>
+      <SubdivisionsMap/>
+      <Infobox />
+      <Logo/>
+      <Spinner show={subdivisions.loading}/>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

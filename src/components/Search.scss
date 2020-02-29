@@ -1,0 +1,26 @@
+.Search {
+    position: absolute;
+
+    left: 10px;
+    top: 10px;
+    min-width: 350px;
+    max-width: 50vw;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: ease-in 50ms;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (max-width: 768px) {
+    .Search {
+        left: 0;
+        top: 0;
+        max-width: initial;
+        min-width: 100%;
+        padding: 10px;
+    }
+}

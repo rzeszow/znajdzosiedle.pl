@@ -1,0 +1,47 @@
+.Infobox {
+    position: absolute;
+
+    right: 10px;
+    top: 10px;
+    min-width: 300px;
+    max-width: 350px;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: ease-in 50ms;
+    z-index: 2;
+
+    color: #fff;
+    font-style: italic;
+    text-align: center;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    a {
+        color: rgb(57, 240, 11);
+        transition: ease-in 50ms;
+        &:hover {
+            color: rgb(82, 194, 55);
+        }
+    }
+    button {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        padding: 5px 15px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+    .Infobox {
+        left: 0;
+        top: 0;
+        max-width: initial;
+        min-width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}

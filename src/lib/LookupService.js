@@ -28,7 +28,7 @@ async function lookup({
     };
 
     return await axios
-        .get(`https://nominatim.openstreetmap.org/search/?q=${name}&format=json&countrycodes=pl&addressdetails=1&limit=${limit}`)
+        .get(`https://nominatim.openstreetmap.org/search/?q=${name}&accept-language=pl&format=json&countrycodes=pl&addressdetails=1&limit=${limit}`)
         .then(res => get(res, 'data', []))
         .then(res => res.shift())
         .then(item => {

@@ -6,6 +6,15 @@ function resolveCity({ address: { city, county }, display_name }) {
     return city || county || display_name;
 }
 
+function findCityItem(items) {
+    for (const item of items) {
+        if (get(item, 'address.city')) {
+            return item;
+        }
+    }
+    throw new Error('Nominatim could not find a city');
+}
+
 function wait(timeout = 1000, ...params) {
     return new Promise((resolve) => {
         const tt = setTimeout(() => {
@@ -40,7 +49,7 @@ async function lookup({
         })
         .then(() => wait(1000, result.city))
         .then((city) => axios.get(`https://nominatim.openstreetmap.org/search/?city=${city}&format=json&class=boundary&countrycodes=pl&addressdetails=1&limit=${limit}`))
-        .then(res => Array.isArray(res.data) ? res.data.shift() : {})
+        .then(res => findCityItem(res.data))
         .then(item => {
             Object.assign(result, {
                 city: resolveCity(item),

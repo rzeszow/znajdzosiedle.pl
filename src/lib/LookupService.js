@@ -37,7 +37,7 @@ async function lookup({
     };
 
     return await axios
-        .get(`https://nominatim.openstreetmap.org/search/?q=${name}&accept-language=pl&format=json&countrycodes=pl&addressdetails=1&limit=${limit}`)
+        .get(`https://nominatim.openstreetmap.org/?q=${name}&accept-language=pl&format=json&countrycodes=pl&addressdetails=1&limit=${limit}`)
         .then(res => get(res, 'data', []))
         .then(res => res.shift())
         .then(item => {
@@ -48,7 +48,7 @@ async function lookup({
             });
         })
         .then(() => wait(1000, result.city))
-        .then((city) => axios.get(`https://nominatim.openstreetmap.org/search/?city=${city}&format=json&class=boundary&countrycodes=pl&addressdetails=1&limit=${limit}`))
+        .then((city) => axios.get(`https://nominatim.openstreetmap.org/?city=${city}&format=json&class=boundary&countrycodes=pl&addressdetails=1&limit=${limit}`))
         .then(res => findCityItem(res.data))
         .then(item => {
             Object.assign(result, {
